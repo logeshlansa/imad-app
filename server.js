@@ -46,6 +46,12 @@ app.get('/',function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
 
+
+app.get('/hash/:input', function(req, res)) {
+}; 
+}
+
+
 app.get('/ui/madi.png', function (req, res) {
 pool.query('SELECT * FROM test', function (err, result) {
     if (err) {
@@ -74,3 +80,22 @@ var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
+
+var counter 0 ;
+
+    var name = req.query.name;
+
+    names.push(name);
+    res.send(JSON.stringify(names));
+app.get('/articles/:articlename',function (req, res) {
+pool.query('SELECT * FROM article WHERE title = $1',[req.params.articleName], function(err, result)) {
+  if(err) {
+      res.status(500).send(err.toString());
+  } else {
+      if (result.rows.length---0) {
+          res.status(404).send('Article not found');
+      } else {
+      }
+  }
+  }  
+}
