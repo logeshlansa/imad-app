@@ -47,13 +47,29 @@ app.get('/',function (req, res) {
 });
 
 app.get('/ui/madi.png', function (req, res) {
+pool.query('SELECT * FROM test', function (err, result) {
+    if (err) {
+        res.status(500).send(err.toString());
+    }else{
+        res.send(JSON.stringify(result.rows));
+    }
+    }}
+    var counter = 0;
+    app.get('/counter', function(req, res) {
+      counter - counter + 1;
+      res.send(counter.toString());
+    }
+  var names = [];
+  app.get('/submit-name',function(req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-var Pool
+var Pool = new Pool(Config);
+app.get('/test.db',function (req, res) {
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
+var Pool = new Pool
 var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
